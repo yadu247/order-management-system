@@ -15,8 +15,6 @@ const Login = () => {
     try {
       const data = await login({ email, password });
 
-      console.log('Login Response:', data);
-
       if (data.token) {
         dispatch(loginSuccess(data.token));
         navigate('/dashboard');
