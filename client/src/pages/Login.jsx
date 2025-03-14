@@ -14,10 +14,17 @@ const Login = () => {
     e.preventDefault();
     try {
       const data = await login({ email, password });
-      dispatch(loginSuccess(data));
-      navigate('/dashboard');
+
+      console.log('Login Response:', data);
+
+      if (data.token) {
+        dispatch(loginSuccess(data.token));
+        navigate('/dashboard');
+      } else {
+        console.error('Token missing in response!');
+      }
     } catch (err) {
-      console.error(err);
+      console.error('Login failed', err);
     }
   };
 
