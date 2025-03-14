@@ -1,9 +1,10 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
-import { Provider } from 'react-redux';
-import { store } from './redux/store';
+import ProtectedRoute from './components/ProtectedRoute';
 
 const App = () => {
   return (
@@ -12,7 +13,10 @@ const App = () => {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+            path="/dashboard"
+            element={<ProtectedRoute element={<Dashboard />} />}
+          />
         </Routes>
       </Router>
     </Provider>
